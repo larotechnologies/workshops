@@ -1,0 +1,63 @@
+﻿@inherits IndexBase
+@page "/"
+
+<h1>Tic-Tac-Toe game</h1>
+
+@if (Symbol != null)
+{
+    <div class="container h-100 tic-tac-toe-container">
+        <div class="row h-50 justify-content-center align-items-center">
+            <span>@Symbol Wins!</span>
+        </div>
+    </div>
+}
+else if (IsDraw)
+{
+    <div class="container h-100 tic-tac-toe-container">
+        <div class="row h-50 justify-content-center align-items-center">
+            <span>Draw!</span>
+        </div>
+    </div>
+}
+else if (Symbol == null)
+{
+    <div class="container h-100 tic-tac-toe-container">
+        <div class="row h-50 justify-content-center align-items-center">
+            <div class="col-3 col-class text-center" @onclick=@(async () => await MakeMove(0, 0)) style="border-right:3px solid white;border-bottom:3px solid white">
+                <span>@Game.Board[0]</span>
+            </div>
+            <div class="col-3 col-class text-center" @onclick=@(async () => await MakeMove(0, 1)) style="border-right:3px solid white;border-left:3px solid white;border-bottom:3px solid white">
+                <span>@Game.Board[1]</span>
+            </div>
+            <div class="col-3 col-class text-center " @onclick=@(async () => await MakeMove(0, 2)) style="border-left:3px solid white;border-bottom:3px solid white">
+                <span>@Game.Board[2]</span>
+            </div>
+        </div>
+        <div class="row h-50 justify-content-center align-items-center">
+            <div class="col-3 col-class text-center " @onclick=@(async () => await MakeMove(1, 0)) style="border-top: 3px solid white; border-bottom: 3px solid white; border-right: 3px solid white">
+                <span>@Game.Board[3]</span>
+            </div>
+            <div class="col-3 col-class text-center " @onclick=@(async () => await MakeMove(1, 1)) style="border: 3px solid white">
+                <span>@Game.Board[4]</span>
+            </div>
+            <div class="col-3 col-class text-center " @onclick=@(async () => await MakeMove(1, 2)) style=" border-left: 3px solid white; border-bottom: 3px solid white; border-top: 3px solid white">
+                <span>@Game.Board[5]</span>
+            </div>
+        </div>
+        <div class="row h-50 justify-content-center align-items-center">
+            <div class="col-3 col-class text-center" @onclick=@(async () => await MakeMove(2, 0)) style=" border-right: 3px solid white; border-top: 3px solid white">
+                <span>@Game.Board[6]</span>
+            </div>
+            <div class="col-3 col-class text-center " @onclick=@(async () => await MakeMove(2, 1)) style="border-right: 3px solid white; border-top: 3px solid white; border-left: 3px solid white">
+                <span>@Game.Board[7]</span>
+            </div>
+            <div class="col-3 col-class text-center " @onclick=@(async () => await MakeMove(2, 2)) style="color:white;height: 72px;width: 48px;padding: 12px;border-left: 3px solid white;border-top: 3px solid white">
+                <span>@Game.Board[8]</span>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="text-center tic-tac-toe-restart">
+    <button class="btn btn-link" @onclick="Restart">RESTART GAME</button>
+</div>
